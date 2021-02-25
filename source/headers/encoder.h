@@ -22,7 +22,7 @@ private:
 
 	SaplingNode _build_tree(std::priority_queue<SaplingNode> heap);
 
-    int count_frequency(char letter);
+    std::map<char, int> count_frequency();
 
 
 public:

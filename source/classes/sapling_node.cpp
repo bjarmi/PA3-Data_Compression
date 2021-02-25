@@ -4,31 +4,34 @@
 
 
 /* --- Public ---*/
-SaplingNode::SaplingNode(std::string key, int value, SaplingNode* left_child,
-                         SaplingNode* right_child)
-{
-	_key = std::move(key);
-	_value = value;
-	_left_child = left_child;
-	_right_child = right_child;
+SaplingNode::SaplingNode(std::string key, int value,
+                         SaplingNode* left_child = nullptr,
+                         SaplingNode* right_child = nullptr) {
+    _key = std::move(key);
+    _value = value;
+    _left_child = left_child;
+    _right_child = right_child;
 }
 
-std::string SaplingNode::get_key()
-{
-	return _key;
+SaplingNode::SaplingNode(std::string key, int value) {
+    _key = std::move(key);
+    _value = value;
+    _left_child = nullptr;
+    _right_child = nullptr;
 }
 
-int SaplingNode::get_value() const
-{
-	return _value;
+std::string SaplingNode::get_key() {
+    return _key;
 }
 
-SaplingNode* SaplingNode::get_left_child()
-{
-	return _left_child;
+int SaplingNode::get_value() const {
+    return _value;
 }
 
-SaplingNode* SaplingNode::get_right_child()
-{
-	return _right_child;
+SaplingNode* SaplingNode::get_left_child() {
+    return _left_child;
+}
+
+SaplingNode* SaplingNode::get_right_child() {
+    return _right_child;
 }

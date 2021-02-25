@@ -12,8 +12,10 @@ private:
     SaplingNode* _right_child;
 
 public:
-    SaplingNode(std::string key, int value, SaplingNode* left_child = NULL,
-                SaplingNode* right_child = NULL);
+    SaplingNode(std::string key, int value, SaplingNode* left_child,
+                SaplingNode* right_child);
+
+    SaplingNode(std::string key, int value);
 
     std::string get_key();
 
