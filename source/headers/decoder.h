@@ -16,6 +16,8 @@ private:
 
 	std::map<std::string, std::string> _get_lexicon();
 
+	void _decode();
+
 	void _write_lexicon();
 
 	void _parse_encoding();
@@ -28,8 +30,6 @@ public:
 	        std::string output_file);
 
 	Decoder(std::string input_file, std::string output_file);
-
-	void decode();
 
 };
 
