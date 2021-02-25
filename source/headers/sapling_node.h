@@ -12,8 +12,8 @@ private:
     SaplingNode* _right_child;
 
 public:
-    SaplingNode(std::string key, int value, SaplingNode* left_child,
-                SaplingNode* right_child);
+    SaplingNode(std::string key, int value, SaplingNode* left_child = NULL,
+                SaplingNode* right_child = NULL);
 
     std::string get_key();
 
@@ -22,6 +22,18 @@ public:
     SaplingNode* get_left_child();
 
     SaplingNode* get_right_child();
+
+    bool operator = (SaplingNode other) {
+        return _value == other._value;
+    }
+
+    bool operator > (SaplingNode other_node) {
+        return _value < other_node._value;
+    }
+
+    bool operator < (SaplingNode other_node) {
+        return _value > other_node._value;
+    }
 
 };
 #endif //PA3_DATA_COMPRESSION_SAPLING_NODE_H

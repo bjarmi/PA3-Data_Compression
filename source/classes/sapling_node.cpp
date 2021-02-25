@@ -2,6 +2,8 @@
 
 #include <utility>
 
+
+/* --- Public ---*/
 SaplingNode::SaplingNode(std::string key, int value, SaplingNode* left_child,
                          SaplingNode* right_child)
 {
