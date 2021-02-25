@@ -20,11 +20,12 @@ private:
 
 	SaplingNode _build_tree(std::priority_queue<SaplingNode> heap);
 
-	std::map<std::string, std::string> _build_lexicon(SaplingNode tree);
 
 public:
 
 	Encoder(string input_file, string output_file);
+
+	std::map<std::string, std::string> build_lexicon(SaplingNode tree);
 
 };
 
