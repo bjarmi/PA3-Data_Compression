@@ -3,4 +3,4 @@ project(PA3_Data_Compression)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(PA3_Data_Compression main.cpp)
+add_executable(PA3_Data_Compression source/main.cpp)
