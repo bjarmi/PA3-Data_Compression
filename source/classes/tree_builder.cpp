@@ -23,7 +23,6 @@ struct TreeBuilder
 			heap.push(new_tree);
 			build();
 		}
-
 		return heap.pop();
 	}
 }

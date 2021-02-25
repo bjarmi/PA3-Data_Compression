@@ -22,7 +22,7 @@ private:
 
 	void _parse_encoding();
 
-	void _write();
+	void _write(const std::string& code);
 
 public:
 
