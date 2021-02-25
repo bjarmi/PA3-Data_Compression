@@ -2,11 +2,19 @@
 #include <queue>
 #include "../headers/sapling_node.h"
 
-static struct TreeBuilder{
+struct TreeBuilder
+{
 
-public:
-    std::priority_queue<SaplingNode> heap;
+	static std::priority_queue<SaplingNode> heap;
 
-    SaplingNode build();
+	static SaplingNode build()
+	{
+		while (heap.size() != 1)
+		{
+			break;
+		}
+
+		return heap.pop();
+	}
 };
 
