@@ -2,6 +2,7 @@
 #include <string>
 #include <map>
 #include <fstream>
+#include <sstream>
 #include "../headers/decoder.h"
 
 Decoder::Decoder(std::map<std::string, std::string> lexicon,
@@ -43,7 +44,21 @@ void Decoder::_parse_encoding()
 // Write lexicon from file header to file.
 void Decoder::_write_lexicon()
 {
+	std::string payload;
+	std::ifstream file(_input_file);
 
+	if (file.is_open())
+	{
+		for (std::string line; getline(file, line);)
+		{
+			if (line == "\\")
+				break;
+
+			payload.append(line);
+		}
+
+		_write(payload);
+	}
 }
 
 // Write code to file.
