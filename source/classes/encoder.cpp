@@ -32,15 +32,14 @@ void Encoder::encode() {}
 // Builds the frequency_heap as a priority_queue with Sapling nodes
 std::priority_queue<SaplingNode> Encoder::_build_frequency() {
 
-    std::priority_queue<SaplingNode> frequency_heap;
+    std::priority_queue<SaplingNode>frequency_heap;
 
     std::map<char, int> frequency_map = count_frequency();
 
-    for (auto & pair : frequency_map)
-    {
+    for (auto &pair : frequency_map) {
         std::string str;
         str.push_back(pair.first);
-        auto node = SaplingNode(str, pair.second);
+        auto node = SaplingNode(str, (-1) * pair.second);
 
         frequency_heap.push(node);
     }
