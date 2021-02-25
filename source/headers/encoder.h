@@ -12,7 +12,7 @@ class Encoder
 private:
 
 	string _input_file;
-	string _output_file
+	string _output_file;
 
 	void encode();
 
