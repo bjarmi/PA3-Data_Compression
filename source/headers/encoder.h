@@ -24,13 +24,15 @@ private:
 
     std::map<char, int> count_frequency();
 
+    static void _get_codes(SaplingNode* node, std::string code,
+                    std::map<std::string, std::string>* map);
+
 
 public:
 
 	Encoder(std::string input_file, std::string output_file);
 
-	std::map<std::string, std::string> build_lexicon(SaplingNode tree);
-
+	std::map<std::string, std::string> build_lexicon(SaplingNode* tree);
 };
 
 #endif //PA3_DATA_COMPRESSION_ENCODER_H
