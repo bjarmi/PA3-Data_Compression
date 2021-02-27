@@ -34,10 +34,11 @@ void Decoder::_decode()
 std::map<std::string, std::string> Decoder::_get_lexicon()
 {
 
+	std::map<std::string, std::string> payload;
+	std::string key, value;
+
 	try
 	{
-		std::map<std::string, std::string> payload;
-		std::string key, value;
 		std::ifstream file(_input_file);
 
 		while (file >> key >> value)
