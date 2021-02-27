@@ -1,8 +1,8 @@
-#include <iostream>
 #include <string>
 #include <map>
 #include <fstream>
 #include <sstream>
+#include <iostream>
 #include "../headers/decoder.h"
 
 Decoder::Decoder(std::map<std::string, std::string> lexicon,
@@ -11,8 +11,8 @@ Decoder::Decoder(std::map<std::string, std::string> lexicon,
 	_lexicon = lexicon;
 	_input_file = input_file;
 	_output_file = output_file;
-	_write_lexicon();
-	_parse_encoding();
+	_decode();
+
 }
 
 Decoder::Decoder(std::string input_file, std::string output_file)
@@ -26,51 +26,68 @@ Decoder::Decoder(std::string input_file, std::string output_file)
 // Initiate decoding instructions.
 void Decoder::_decode()
 {
-
+	_write_lexicon();
+	_parse_encoding();
 }
 
 // Read lexicon from file header.
 std::map<std::string, std::string> Decoder::_get_lexicon()
 {
-	return std::map<std::string, std::string>();
+
+	try
+	{
+		std::map<std::string, std::string> payload;
+		std::string key, value;
+		std::ifstream file(_input_file);
+
+		while (file >> key >> value)
+			payload[key] = value;
+
+		file.close();
+		return payload;
+	}
+
+	catch (std::ifstream::failure& error)
+	{
+		throw error;
+	}
+
 }
 
-// Parse code from input_file to output file with the lexicon.
+// Todo: Parse code from input_file to output file with the lexicon.
 void Decoder::_parse_encoding()
 {
-
+	int start_index = _get_code_start_index();
 }
 
-// Write lexicon from file header to file.
+// Write lexicon to file.
 void Decoder::_write_lexicon()
 {
-	std::string payload;
-	std::ifstream file(_input_file);
+	std::ostringstream payload;
 
-	if (file.is_open())
-	{
-		for (std::string line; getline(file, line);)
-		{
-			if (line == "\\")
-				break;
+	for (auto const& pair : _lexicon)
+		payload << pair.first << " " << pair.second << "\n";
 
-			payload.append(line);
-		}
+	payload << "\\\n";
+	_write(payload.str());
 
-		_write(payload);
-	}
 }
 
 // Write code to file.
-void Decoder::_write(const std::string& code)
+void Decoder::_write(const std::string& text)
 {
 	std::ofstream file(_input_file, std::ios::app);
 
 	if (file.is_open())
 	{
-		file << code;
+		file << text;
 		file.close();
 	}
 
 }
 
+// Todo: Returns the index that marks where the code in the input file starts.
+int Decoder::_get_code_start_index()
+{
+	return 0;
+}

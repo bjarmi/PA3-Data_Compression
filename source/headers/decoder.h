@@ -24,6 +24,8 @@ private:
 
 	void _write(const std::string& code);
 
+	int _get_code_start_index();
+
 public:
 
 	Decoder(std::map<std::string, std::string> lexicon, std::string input_file,
