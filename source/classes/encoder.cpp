@@ -5,6 +5,7 @@
 
 #include "../headers/encoder.h"
 #include "../headers/sapling_node.h"
+#include "tre"
 
 
 /* --- Private --- */
@@ -47,24 +48,29 @@ std::priority_queue<SaplingNode> Encoder::_build_frequency() {
 
 SaplingNode Encoder::_build_tree(std::priority_queue<SaplingNode> heap) {}
 
-void Encoder::_get_codes(SaplingNode* node, std::string code,
-                         std::map<std::string, std::string>* map) {
+// Recursively finds code for each letter in a tree and inserts them to lexicon
+void Encoder::_assign_codes_to_letters(SaplingNode* node, std::string code,
+                                       std::map<std::string,
+                                       std::string>* lexicon)
+{
+    if (node->get_left_child())
+        _assign_codes_to_letters(node->get_left_child(),
+                                 (code + "0"),
+                                 lexicon);
 
-    bool left_is_null = node->get_left_child() == nullptr;
-    bool right_is_null = node->get_right_child() == nullptr;
+    if (node->get_right_child())
+        _assign_codes_to_letters(node->get_right_child(),
+                                 (code + "1"),
+                                 lexicon);
 
-    if (!left_is_null)
-        _get_codes(node->get_left_child(), (code + "0"), map);
-
-    if (!right_is_null)
-        _get_codes(node->get_right_child(), (code + "1"), map);
-
-    if (left_is_null && right_is_null)
-        (*map)[node->get_key()] = code;
+    if (!node->get_left_child() && !node->get_right_child())
+        (*lexicon)[node->get_key()] = code;
 }
 
 /* --- Public ---*/
-Encoder::Encoder(std::string input_file, std::string output_file) {
+Encoder::Encoder(std::string input_file, std::string output_file)
+{
+
     _input_file = std::move(input_file);
     _output_file = std::move(output_file);
 
@@ -75,12 +81,14 @@ Encoder::Encoder(std::string input_file, std::string output_file) {
     std::map<std::string, std::string> lexicon = build_lexicon(&tree);
 }
 
-std::map<std::string, std::string>
-Encoder::build_lexicon(SaplingNode* tree) {
+std::map<std::string, std::string> Encoder::build_lexicon(SaplingNode* tree)
+{
 
-    std::map<std::string, std::string> map;
-    _get_codes(tree, "", &map);
-    return map;
+    std::map<std::string, std::string> lexicon;
+
+    _assign_codes_to_letters(tree, "", &lexicon);
+
+    return lexicon;
 }
 
 
