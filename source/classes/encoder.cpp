@@ -5,12 +5,12 @@
 
 #include "../headers/encoder.h"
 #include "../headers/sapling_node.h"
-#include "tre"
 
 
 /* --- Private --- */
 // Counts the frequency of a letter in the input file.
-std::map<char, int> Encoder::count_frequency() {
+std::map<char, int> Encoder::count_frequency()
+{
     std::ifstream file_stream(_input_file);
     char character;
     std::map<char, int> map;
@@ -46,7 +46,10 @@ std::priority_queue<SaplingNode> Encoder::_build_frequency() {
     }
 }
 
-SaplingNode Encoder::_build_tree(std::priority_queue<SaplingNode> heap) {}
+SaplingNode Encoder::_build_tree(std::priority_queue<SaplingNode> heap)
+{
+
+}
 
 // Recursively finds code for each letter in a tree and inserts them to lexicon
 void Encoder::_assign_codes_to_letters(SaplingNode* node, std::string code,
