@@ -114,7 +114,10 @@ void Decoder::_write(const std::string& text)
 	{
 		file << text;
 		file.close();
+		return;
 	}
+
+	throw std::runtime_error("Couldn't open output file.");
 
 }
 
