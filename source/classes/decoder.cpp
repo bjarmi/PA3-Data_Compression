@@ -30,18 +30,16 @@ void Decoder::_decode()
 	_parse_encoding();
 }
 
-// Todo: Remove Try/Catch -> Use "if (file.is_open()) else throw <error>".
 // Read lexicon from file header.
 std::map<std::string, std::string> Decoder::_get_lexicon()
 {
 
 	std::map<std::string, std::string> payload;
 	std::string key, value;
+	std::ifstream file(_input_file);
 
-	try
+	if (file.is_open())
 	{
-		std::ifstream file(_input_file);
-
 		while (file >> key >> value)
 			payload[key] = value;
 
@@ -49,11 +47,7 @@ std::map<std::string, std::string> Decoder::_get_lexicon()
 		return payload;
 	}
 
-	catch (std::ifstream::failure& error)
-	{
-		throw error;
-	}
-
+	throw std::runtime_error("Couldn't open input file.");
 }
 
 // Decode from input_file to output_file with the lexicon.
