@@ -9,6 +9,7 @@ add_executable(
         source/main.cpp
         source/headers/encoder.h
         source/headers/decoder.h
+        source/headers/tree_builder.h
         source/headers/sapling_node.h
         source/classes/tree_builder.cpp
         source/classes/sapling_node.cpp
