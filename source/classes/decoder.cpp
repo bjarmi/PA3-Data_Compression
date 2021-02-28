@@ -63,10 +63,9 @@ void Decoder::_parse_encoding()
 	{
 		std::ifstream in_file(_input_file);
 		std::string buffer;
-		int start_index = _get_code_start_index();
+		int start_index = _get_code_start_index() + 1;
 
-		// Todo: Read from start_index to end of file.
-
+		in_file.seekg(start_index);
 		_parse(in_file, buffer);
 	}
 
@@ -119,10 +118,15 @@ void Decoder::_write(const std::string& text)
 
 }
 
-// Todo: Returns the index that marks where the code in the input file starts.
+// Returns the index that marks where the code in the input file starts.
 int Decoder::_get_code_start_index()
 {
-	// Todo: Read until encountering 'backslash + newline'.
-	// Todo: Return next index after that encounter.
-	return 0;
+	std::ifstream file(_input_file);
+	char symbol;
+
+	while (file >> symbol)
+		if (symbol == '\\')
+			return file.tellg();
+
+	throw std::exception(); // Todo: Customize.
 }
