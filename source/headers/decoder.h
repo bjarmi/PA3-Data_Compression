@@ -28,10 +28,11 @@ private:
 
 public:
 
-	Decoder(std::map<std::string, std::string> lexicon, std::string input_file,
-	        std::string output_file);
+	Decoder(std::map<std::string, std::string>& lexicon,
+	        std::string& input_file,
+	        std::string& output_file);
 
-	Decoder(std::string input_file, std::string output_file);
+	Decoder(std::string& input_file, std::string& output_file);
 
 };
 

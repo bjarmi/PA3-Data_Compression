@@ -5,8 +5,8 @@
 #include <iostream>
 #include "../headers/decoder.h"
 
-Decoder::Decoder(std::map<std::string, std::string> lexicon,
-                 std::string input_file, std::string output_file)
+Decoder::Decoder(std::map<std::string, std::string>& lexicon,
+                 std::string& input_file, std::string& output_file)
 {
 	_lexicon = lexicon;
 	_input_file = input_file;
@@ -15,7 +15,7 @@ Decoder::Decoder(std::map<std::string, std::string> lexicon,
 
 }
 
-Decoder::Decoder(std::string input_file, std::string output_file)
+Decoder::Decoder(std::string& input_file, std::string& output_file)
 {
 	_input_file = input_file;
 	_output_file = output_file;
@@ -30,6 +30,7 @@ void Decoder::_decode()
 	_parse_encoding();
 }
 
+// Todo: Remove Try/Catch -> Use "if (file.is_open()) else throw <error>".
 // Read lexicon from file header.
 std::map<std::string, std::string> Decoder::_get_lexicon()
 {
@@ -55,10 +56,24 @@ std::map<std::string, std::string> Decoder::_get_lexicon()
 
 }
 
-// Todo: Parse code from input_file to output file with the lexicon.
+// Todo: Decode from input_file to output_file with the lexicon.
 void Decoder::_parse_encoding()
 {
-	int start_index = _get_code_start_index();
+	try
+	{
+		std::ifstream in_file(_input_file);
+		int start_index = _get_code_start_index();
+
+		// Todo: Read from start_index to end of file.
+		// Todo: _get_symbol() and add to buffer.
+		// Todo: If lexicon[buffer] -> _write(buffer) and flush buffer.
+		// Todo: Else -> Loop.
+	}
+
+	catch (std::ifstream::failure& error)
+	{
+		throw error;
+	}
 }
 
 // Write lexicon to file.
@@ -90,5 +105,7 @@ void Decoder::_write(const std::string& text)
 // Todo: Returns the index that marks where the code in the input file starts.
 int Decoder::_get_code_start_index()
 {
+	// Todo: Read until encountering 'backslash + newline'.
+	// Todo: Return next index after that encounter.
 	return 0;
 }
