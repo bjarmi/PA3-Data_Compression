@@ -23,7 +23,7 @@ private:
 
     std::map<char, int> count_frequency();
 
-    static void _assign_codes_to_letters(SaplingNode* node, std::string
+    static void _assign_codes_to_letters(SaplingNode* node, const std::string&
     code, std::map<std::string, std::string>* lexicon);
 
 
@@ -31,7 +31,7 @@ public:
 
     Encoder(std::string input_file, std::string output_file);
 
-    std::map<std::string, std::string> build_lexicon(SaplingNode* tree);
+    static std::map<std::string, std::string> build_lexicon(SaplingNode* tree);
 };
 
 #endif //PA3_DATA_COMPRESSION_ENCODER_H

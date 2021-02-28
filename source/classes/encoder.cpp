@@ -1,6 +1,7 @@
 #include <iostream>
 #include <queue>
 #include <fstream>
+#include <utility>
 
 #include "../headers/encoder.h"
 #include "../headers/decoder.h"
@@ -34,7 +35,7 @@ std::map<char, int> Encoder::count_frequency()
 // I encoded the file boss.
 void Encoder::encode(std::map<std::string, std::string> lexicon)
 {
-	Decoder decoder(lexicon, _input_file, _output_file);
+	Decoder decoder(std::move(lexicon), _input_file, _output_file);
 }
 
 // Builds the frequency_heap as a priority_queue with Sapling nodes
@@ -58,14 +59,16 @@ std::priority_queue<SaplingNode> Encoder::_build_frequency()
 // Builds huffman tree.
 SaplingNode Encoder::_build_tree(std::priority_queue<SaplingNode> heap)
 {
-	TreeBuilder::heap = heap;
+	TreeBuilder::heap = std::move(heap);
 	return TreeBuilder::build();
 }
 
 // Recursively finds code for each letter in a tree and inserts them to lexicon
-void Encoder::_assign_codes_to_letters(SaplingNode* node, std::string code,
-                                       std::map<std::string,
-		                                       std::string>* lexicon)
+void
+Encoder::_assign_codes_to_letters(SaplingNode* node, const std::string& code,
+                                  std::map<std::string,
+		                                  std::string>* lexicon
+)
 {
 	if (node->get_left_child())
 		_assign_codes_to_letters(node->get_left_child(),
