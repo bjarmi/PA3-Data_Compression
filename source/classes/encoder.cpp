@@ -61,8 +61,9 @@ std::priority_queue<SaplingNode> Encoder::_build_frequency()
 // Builds huffman tree.
 SaplingNode Encoder::_build_tree(std::priority_queue<SaplingNode> heap)
 {
-	TreeBuilder::heap = std::move(heap);
-	return TreeBuilder::build();
+    TreeBuilder builder;
+    builder.heap = std::move(heap);
+	return builder.build();
 }
 
 // Recursively finds code for each letter in a tree and inserts them to lexicon
