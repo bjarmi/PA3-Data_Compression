@@ -18,18 +18,23 @@ std::map<char, int> Encoder::count_frequency()
 
 	std::ifstream file_stream(_input_file);
 
-	while (file_stream.get(character))
-	{
+	if (file_stream.is_open()) {
 
-		if (map.find(character) == map.end())
-			map.insert(std::pair<char, int>(character, 1));
 
-		else
-			++map[character];
-	}
+        while (file_stream.get(character)) {
 
-	file_stream.close();
-	return map;
+            if (map.find(character) == map.end())
+                map.insert(std::pair<char, int>(character, 1));
+
+            else
+                ++map[character];
+        }
+
+        file_stream.close();
+        return map;
+    }
+    throw std::runtime_error("Could not read file.");
+
 }
 
 // I encoded the file boss.
