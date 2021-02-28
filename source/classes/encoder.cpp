@@ -54,6 +54,8 @@ std::priority_queue<SaplingNode> Encoder::_build_frequency()
 
 		frequency_heap.push(node);
 	}
+
+	return frequency_heap;
 }
 
 // Builds huffman tree.
