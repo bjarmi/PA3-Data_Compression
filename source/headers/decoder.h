@@ -26,6 +26,8 @@ private:
 
 	int _get_code_start_index();
 
+	void _parse(std::ifstream& in_file, std::string& buffer);
+
 public:
 
 	Decoder(std::map<std::string, std::string>& lexicon,

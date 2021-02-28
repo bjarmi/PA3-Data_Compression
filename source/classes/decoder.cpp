@@ -56,23 +56,40 @@ std::map<std::string, std::string> Decoder::_get_lexicon()
 
 }
 
-// Todo: Decode from input_file to output_file with the lexicon.
+// Decode from input_file to output_file with the lexicon.
 void Decoder::_parse_encoding()
 {
 	try
 	{
 		std::ifstream in_file(_input_file);
+		std::string buffer;
 		int start_index = _get_code_start_index();
 
 		// Todo: Read from start_index to end of file.
-		// Todo: _get_symbol() and add to buffer.
-		// Todo: If lexicon[buffer] -> _write(buffer) and flush buffer.
-		// Todo: Else -> Loop.
+
+		_parse(in_file, buffer);
 	}
 
 	catch (std::ifstream::failure& error)
 	{
 		throw error;
+	}
+}
+
+// Attempt to parse an encoded symbol.
+void Decoder::_parse(std::ifstream& in_file, std::string& buffer)
+{
+	char symbol;
+
+	while (in_file >> symbol)
+	{
+		buffer.append(reinterpret_cast<const char*>(symbol));
+
+		if (_lexicon.count(buffer))
+		{
+			_write(buffer);
+			buffer.clear();
+		}
 	}
 }
 
