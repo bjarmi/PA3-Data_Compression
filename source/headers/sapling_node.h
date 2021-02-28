@@ -25,11 +25,11 @@ public:
 
     SaplingNode* get_right_child();
 
-    bool operator == (SaplingNode other);
+    bool operator == (const SaplingNode& other) const;
 
-    bool operator > (SaplingNode other_node);
+    bool operator >= (const SaplingNode& other_node) const;
 
-    bool operator < (SaplingNode other_node);
+    bool operator <= (const SaplingNode& other_node) const;
 
 };
 #endif //PA3_DATA_COMPRESSION_SAPLING_NODE_H

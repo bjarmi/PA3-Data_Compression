@@ -38,17 +38,17 @@ SaplingNode* SaplingNode::get_right_child()
 	return _right_child;
 }
 
-bool SaplingNode::operator==(SaplingNode other)
+bool SaplingNode::operator==(const SaplingNode& other) const
 {
 	return _value == other._value;
 }
 
-bool SaplingNode::operator>(SaplingNode other_node)
+bool SaplingNode::operator>=(const SaplingNode& other_node) const
 {
 	return _value < other_node._value;
 }
 
-bool SaplingNode::operator<(SaplingNode other_node)
+bool SaplingNode::operator<=(const SaplingNode& other_node) const
 {
 	return _value > other_node._value;
 }
