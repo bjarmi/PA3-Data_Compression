@@ -5,5 +5,5 @@ set(CMAKE_CXX_STANDARD 11)
 
 
 add_executable(PA3_Data_Compression source/main.cpp source/headers/encoder.h source/headers/decoder.h source/headers/sapling_node.h source/classes/tree_builder.cpp source/classes/sapling_node.cpp source/classes/decoder.cpp)
-add_executable(PA3_Data_Compression source/main.cpp source/headers/encoder.h source/headers/decoder.h source/headers/sapling_node.h source/classes/tree_builder.cpp source/classes/sapling_node.cpp source/classes/encoder.cpp)
+add_executable(PA3_Data_Compression source/main.cpp source/headers/encoder.h source/headers/decoder.h source/headers/sapling_node.h source/classes/tree_builder.cpp source/classes/sapling_node.cpp source/classes/encoder.cpp source/headers/tree_builder.h)
 
