@@ -108,7 +108,7 @@ void Decoder::_write_lexicon()
 // Write code to file.
 void Decoder::_write(const std::string& text)
 {
-	std::ofstream file(_input_file, std::ios::app);
+	std::ofstream file(_output_file, std::ios::app);
 
 	if (file.is_open())
 	{
