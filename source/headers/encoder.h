@@ -15,7 +15,7 @@ private:
     std::string _input_file;
     std::string _output_file;
 
-    void encode();
+    void encode(std::map<std::string, std::string> lexicon);
 
     std::priority_queue<SaplingNode> _build_frequency();
 

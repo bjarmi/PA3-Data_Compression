@@ -4,6 +4,7 @@
 #include <fstream>
 
 #include "../headers/encoder.h"
+#include "../headers/decoder.h"
 #include "../headers/sapling_node.h"
 
 
@@ -28,7 +29,10 @@ std::map<char, int> Encoder::count_frequency()
     return map;
 }
 
-void Encoder::encode() {}
+void Encoder::encode(std::map<std::string, std::string> lexicon)
+{
+    Decoder decoder(lexicon, _input_file, _output_file);
+}
 
 // Builds the frequency_heap as a priority_queue with Sapling nodes
 std::priority_queue<SaplingNode> Encoder::_build_frequency() {
@@ -82,6 +86,8 @@ Encoder::Encoder(std::string input_file, std::string output_file)
     SaplingNode tree = _build_tree(frequency_heap);
 
     std::map<std::string, std::string> lexicon = build_lexicon(&tree);
+
+    encode(lexicon);
 }
 
 std::map<std::string, std::string> Encoder::build_lexicon(SaplingNode* tree)
