@@ -45,10 +45,20 @@ bool SaplingNode::operator==(const SaplingNode& other) const
 
 bool SaplingNode::operator>=(const SaplingNode& other_node) const
 {
-	return _value < other_node._value;
+	return _value >= other_node._value;
 }
 
 bool SaplingNode::operator<=(const SaplingNode& other_node) const
+{
+	return _value <= other_node._value;
+}
+
+bool SaplingNode::operator<(const SaplingNode& other_node) const
+{
+	return _value < other_node._value;
+}
+
+bool SaplingNode::operator>(const SaplingNode& other_node) const
 {
 	return _value > other_node._value;
 }
