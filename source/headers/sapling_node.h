@@ -25,7 +25,7 @@ public:
 
     SaplingNode* get_right_child();
 
-    bool operator = (SaplingNode other);
+    bool operator == (SaplingNode other);
 
     bool operator > (SaplingNode other_node);
 
