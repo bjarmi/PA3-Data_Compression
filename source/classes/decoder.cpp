@@ -128,5 +128,5 @@ int Decoder::_get_code_start_index()
 		if (symbol == '\\')
 			return file.tellg();
 
-	throw std::exception(); // Todo: Customize.
+	throw std::runtime_error("Couldn't find separator.");
 }
