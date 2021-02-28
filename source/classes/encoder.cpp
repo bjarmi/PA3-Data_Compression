@@ -13,9 +13,10 @@
 // Counts the frequency of a letter in the input file.
 std::map<char, int> Encoder::count_frequency()
 {
-    std::ifstream file_stream(_input_file);
     char character;
     std::map<char, int> map;
+
+    std::ifstream file_stream(_input_file);
 
     while (file_stream.get(character)) {
 
@@ -30,13 +31,15 @@ std::map<char, int> Encoder::count_frequency()
     return map;
 }
 
+// I encoded the file boss.
 void Encoder::encode(std::map<std::string, std::string> lexicon)
 {
     Decoder decoder(lexicon, _input_file, _output_file);
 }
 
 // Builds the frequency_heap as a priority_queue with Sapling nodes
-std::priority_queue<SaplingNode> Encoder::_build_frequency() {
+std::priority_queue<SaplingNode> Encoder::_build_frequency()
+{
 
     std::priority_queue<SaplingNode> frequency_heap;
 
@@ -51,6 +54,7 @@ std::priority_queue<SaplingNode> Encoder::_build_frequency() {
     }
 }
 
+// Builds huffman tree.
 SaplingNode Encoder::_build_tree(std::priority_queue<SaplingNode> heap)
 {
     TreeBuilder::heap = heap;
@@ -92,6 +96,7 @@ Encoder::Encoder(std::string input_file, std::string output_file)
     encode(lexicon);
 }
 
+// Builds lexicon from a given tree.
 std::map<std::string, std::string> Encoder::build_lexicon(SaplingNode* tree)
 {
 
