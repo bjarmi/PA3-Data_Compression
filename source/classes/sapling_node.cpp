@@ -5,8 +5,8 @@
 
 /* --- Public ---*/
 SaplingNode::SaplingNode(std::string key, int value,
-                         SaplingNode* left_child = nullptr,
-                         SaplingNode* right_child = nullptr) {
+                         SaplingNode* left_child,
+                         SaplingNode* right_child) {
     _key = std::move(key);
     _value = value;
     _left_child = left_child;

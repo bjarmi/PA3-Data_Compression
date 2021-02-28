@@ -19,7 +19,7 @@ private:
 
     std::priority_queue<SaplingNode> _build_frequency();
 
-    SaplingNode _build_tree(std::priority_queue<SaplingNode> heap);
+    static SaplingNode _build_tree(std::priority_queue<SaplingNode> heap);
 
     std::map<char, int> count_frequency();
 

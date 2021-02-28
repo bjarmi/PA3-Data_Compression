@@ -3,28 +3,26 @@
 #include "../headers/sapling_node.h"
 #include "../headers/tree_builder.h"
 
-struct TreeBuilder
-{
 
-	static std::priority_queue<SaplingNode> heap;
+SaplingNode TreeBuilder::build() {
 
-	static SaplingNode build()
-	{
-		while (heap.size() > 1)
-		{
-			auto node_1 = heap.pop();
-			auto node_2 = heap.pop();
-			auto new_tree = SaplingNode(
-					"",
-					node_1.get_value() + node_2.value(),
-					node_1,
-					node_2
-			);
+    while (heap.size() > 1) {
 
-			heap.push(new_tree);
-			build();
-		}
-		return heap.pop();
-	}
+        auto node_1 = heap.top();
+        heap.pop();
+        auto node_2 = heap.top();
+        heap.pop();
+        auto new_tree = SaplingNode(
+                "",
+                node_1.get_value() + node_2.get_value(),
+                &node_1,
+                &node_2
+        );
+
+        heap.push(new_tree);
+        build();
+    }
+    return heap.top();
 }
+
 

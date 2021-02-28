@@ -6,6 +6,7 @@
 #include "../headers/encoder.h"
 #include "../headers/decoder.h"
 #include "../headers/sapling_node.h"
+#include "../headers/tree_builder.h"
 
 
 /* --- Private --- */
@@ -52,7 +53,8 @@ std::priority_queue<SaplingNode> Encoder::_build_frequency() {
 
 SaplingNode Encoder::_build_tree(std::priority_queue<SaplingNode> heap)
 {
-
+    TreeBuilder::heap = heap;
+    return TreeBuilder::build();
 }
 
 // Recursively finds code for each letter in a tree and inserts them to lexicon
