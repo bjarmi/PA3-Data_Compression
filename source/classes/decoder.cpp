@@ -3,22 +3,23 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <utility>
 #include "../headers/decoder.h"
 
-Decoder::Decoder(std::map<std::string, std::string>& lexicon,
-                 std::string& input_file, std::string& output_file)
+Decoder::Decoder(std::map<std::string, std::string> lexicon,
+                 std::string input_file, std::string output_file)
 {
-	_lexicon = lexicon;
-	_input_file = input_file;
-	_output_file = output_file;
+	_lexicon = std::move(lexicon);
+	_input_file = std::move(input_file);
+	_output_file = std::move(output_file);
 	_decode();
 
 }
 
-Decoder::Decoder(std::string& input_file, std::string& output_file)
+Decoder::Decoder(std::string input_file, std::string output_file)
 {
-	_input_file = input_file;
-	_output_file = output_file;
+	_input_file = std::move(input_file);
+	_output_file = std::move(output_file);
 	_get_lexicon();
 	_parse_encoding();
 }
