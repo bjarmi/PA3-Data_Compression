@@ -1,4 +1,3 @@
-#include <iostream>
 #include <queue>
 #include "../headers/sapling_node.h"
 #include "../headers/tree_builder.h"

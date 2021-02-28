@@ -1,6 +1,5 @@
 #include <iostream>
 #include <queue>
-#include <utility>
 #include <fstream>
 
 #include "../headers/encoder.h"

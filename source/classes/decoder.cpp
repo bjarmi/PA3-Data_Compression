@@ -3,7 +3,6 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
-#include <utility>
 #include "../headers/decoder.h"
 
 Decoder::Decoder(std::map<std::string, std::string> lexicon,
